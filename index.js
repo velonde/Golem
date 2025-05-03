@@ -3,6 +3,7 @@ const path = require('path');
 const { exec } = require('child_process');
 const { promisify } = require('util');
 const express = require('express');
+const figlet = require('figlet');
 
 
 
@@ -24,6 +25,15 @@ app.get('/', (req, res) => {
 
 
 
-app.listen(PORT, () => {   
+app.listen(PORT, () => {
+    figlet('Server Booted!', function(err, data) {
+        if (err) {
+            console.log('Something went wrong...');
+            console.dir(err);
+            return;
+        }
+        console.log(data); 
+    });
+
     console.log(`Server is running on http://localhost:${PORT}`);
 });
